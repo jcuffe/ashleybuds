@@ -16,6 +16,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ vars.AWS_DEFAULT_REGION }}
       - name: CDK Deploy
-        run: |
-          cd cdk
-          npx cdk deploy --all --require-approval never
+        run: ls -al
