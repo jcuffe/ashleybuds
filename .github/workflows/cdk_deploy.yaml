@@ -12,7 +12,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     defaults:
-      working-directory: ./cdk
+      run:
+        working-directory: ./cdk
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
