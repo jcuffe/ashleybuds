@@ -26,7 +26,7 @@ jobs:
       - name: Setup Zig
         uses: goto-bus-stop/setup-zig@2a9625d550eefc3a9b1a43d342ad655f563f8241
       - name: Install Rust
-        run: rustup toolchain install stable --profile minimal
+        run: rustup toolchain install stable --profile minimal --target aarch64-unknown-linux-gnu --no-self-update
       - name: Setup cargo-binstall
         uses: cargo-bins/cargo-binstall@bda3c7568bb795b670b7a00e67628bd245146ec9
       - name: Setup cargo-lambda

@@ -1,6 +1,7 @@
 import { join } from "node:path";
 
 import { Stack, StackProps, Fn } from "aws-cdk-lib";
+import { Architecture } from "aws-cdk-lib/aws-lambda";
 import {
   HttpApi,
   DomainName,
@@ -57,6 +58,7 @@ export class CdkStack extends Stack {
     const rootHandler = new RustFunction(this, "LambdaRoot", {
       functionName: "ashleybuds-root",
       binaryName: "root",
+      bundling: { architecture: Architecture.ARM_64 },
       manifestPath,
     });
 
