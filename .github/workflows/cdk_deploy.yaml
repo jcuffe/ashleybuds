@@ -38,6 +38,7 @@ jobs:
         run: |
           cd cdk
           npm ci
+          ls ~/.cargo/bin
           cargo --list
           npx cdk deploy --ci --all --require-approval never
         env:
