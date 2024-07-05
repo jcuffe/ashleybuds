@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Ashley Buds</title>
+    <script src="assets/htmx-2.0.0.min.js"></script>
+  </head>
+  <!-- have a button POST a click via AJAX -->
+  <body>
+    <% for msg in &messages { %>
+      <div><%= msg %></div>
+    <% } %>
+    <a hx-get="products" hx-push-url="true" hx-swap="outerHTML" href="products">
+      Click Me
+    </a>
+    <dl>
+      <% for header in &headers { %>
+        <dt><%= header.name %></dt>
+        <dd><%= header.value %></dd>
+      <% } %>
+    </dl>
+  </body>
+</html>
