@@ -11,16 +11,28 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-      - name: Cache Docker images.
-        uses: ScribeMD/docker-cache@0.5.0
-        with:
-          key: docker-${{ runner.os }}
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: "22.4.0"
           cache: "npm"
           cache-dependency-path: "cdk/package-lock.json"
+      - name: Setup Zig
+        uses: goto-bus-stop/setup-zig@2a9625d550eefc3a9b1a43d342ad655f563f8241
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+      - uses: Swatinem/rust-cache@9bdad043e88c75890e36ad3bbc8d27f0090dd609
+
+      # TODO: Cache
+      - name: Setup cargo-binstall
+        uses: cargo-bins/cargo-binstall@bda3c7568bb795b670b7a00e67628bd245146ec9
+
+      # TODO: Cache
+      - name: Setup cargo-lambda
+        run: cargo binstall -y cargo-lambda
       - name: CDK Deploy
         run: |
           cd cdk
