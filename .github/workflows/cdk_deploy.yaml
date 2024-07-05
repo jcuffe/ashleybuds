@@ -30,7 +30,7 @@ jobs:
       - name: Setup cargo-binstall
         uses: cargo-bins/cargo-binstall@main
       - name: Setup cargo-lambda
-        run: cargo binstall cargo-lambda
+        run: cargo binstall -y cargo-lambda
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
