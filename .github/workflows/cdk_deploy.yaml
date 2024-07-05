@@ -19,11 +19,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "22.4.0"
+          cache: "npm"
       - name: Checkout Repository
         uses: actions/checkout@v4
       - name: CDK Deploy
         run: |
           cd cdk
-          npm install -g aws-cdk
-          npm install
-          cdk deploy --all --require-approval never
+          npm ci
+          npx cdk deploy --ci --all --require-approval never
