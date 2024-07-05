@@ -15,13 +15,14 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ vars.AWS_DEFAULT_REGION }}
+      - name: Checkout Repository
+        uses: actions/checkout@v4
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
           node-version: "22.4.0"
           cache: "npm"
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+          cache-dependency-path: "cdk/package-lock.json"
       - name: CDK Deploy
         run: |
           cd cdk
