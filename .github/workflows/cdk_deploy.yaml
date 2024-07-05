@@ -32,7 +32,7 @@ jobs:
 
       # TODO: Cache
       - name: Setup cargo-lambda
-        run: cargo binstall -y cargo-lambda
+        run: cargo binstall -y cargo-lambda --force
       - name: CDK Deploy
         run: |
           cd cdk
