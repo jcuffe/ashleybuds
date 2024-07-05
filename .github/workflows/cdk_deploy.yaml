@@ -24,19 +24,14 @@ jobs:
         uses: goto-bus-stop/setup-zig@2a9625d550eefc3a9b1a43d342ad655f563f8241
       - name: Install Rust
         run: rustup toolchain install stable --profile minimal
+      - name: Setup cargo-binstall
+        uses: cargo-bins/cargo-binstall@bda3c7568bb795b670b7a00e67628bd245146ec9
+      - name: Setup cargo-lambda
+        run: cargo binstall -y cargo-lambda
       - name: Cache cargo artifacts
         uses: Swatinem/rust-cache@9bdad043e88c75890e36ad3bbc8d27f0090dd609
         with:
           cache-all-crates: true
-
-      # TODO: Cache
-      - name: Setup cargo-binstall
-        uses: cargo-bins/cargo-binstall@bda3c7568bb795b670b7a00e67628bd245146ec9
-
-      # TODO: Cache
-      - name: Setup cargo-lambda
-        # run: cargo binstall -y cargo-lambda --force
-        run: cargo binstall -y cargo-lambda
       - name: CDK Deploy
         run: |
           cd cdk
