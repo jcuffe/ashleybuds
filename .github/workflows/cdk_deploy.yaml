@@ -11,12 +11,14 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+      - name: Setup Zig
+        uses: goto-bus-stop/setup-zig@v2.2.0
       - name: Install Rust
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           profile: minimal
-          override: true
+          # override: true
       - name: Cache cargo registry
         uses: actions/cache@v3
         continue-on-error: false
@@ -25,6 +27,10 @@ jobs:
             ~/.cargo/registry
             ~/.cargo/git
           key: cargo-build-cache
+      - name: Setup cargo-binstall
+        uses: cargo-bins/cargo-binstall@main
+      - name: Setup cargo-lambda
+        run: cargo binstall cargo-lambda
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
